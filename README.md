@@ -59,5 +59,5 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 =======
-# FRONT.Bellezza.pura
+# Bellezza-pura-front
 >>>>>>> c823476ab8365743fd8fe3a29c1d2ad0498dff9a
