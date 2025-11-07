@@ -1,0 +1,29 @@
+.product-filter {
+    padding: 1rem;
+}
+.controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+.controls label {
+    font-size: 0.95rem;
+}
+.product-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.product-item {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+.product-main {
+    display: flex;
+    justify-content: space-between;
+}
+.product-name { font-weight: 600; }
+.product-price { color: #3b59ff; }
+.no-results, .loading, .error { margin-top: 1rem; }
+.error { color: #f0060b; }

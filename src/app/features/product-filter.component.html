@@ -1,0 +1,39 @@
+<div class="product-filter">
+    <div class="controls">
+    <label>
+        Categoría:
+        <select (change)="onCategoryChange($event)">
+        <option value="">Todas</option>
+        <option value="skincare">Skincare</option>
+        <option value="makeup">Maquillaje</option>
+        <option value="hair">Cuidado del cabello</option>
+        </select>
+    </label>
+
+    <label>
+        Orden:
+        <select (change)="onSortChange($event)">
+        <option value="">Por defecto</option>
+        <option value="price_asc">Precio: menor a mayor</option>
+        <option value="price_desc">Precio: mayor a menor</option>
+        </select>
+    </label>
+    </div>
+
+    <div class="status">
+    <div *ngIf="loading" class="loading">Cargando productos…</div>
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+    </div>
+
+  <ul *ngIf="!loading && products.length > 0" class="product-list">
+    <li *ngFor="let p of products" class="product-item">
+        <div class="product-main">
+        <div class="product-name">{{ p.name || 'Sin nombre' }}</div>
+        <div class="product-price" *ngIf="p.price">€{{ p.price }}</div>
+        </div>
+        <div class="product-meta">{{ p.category || '' }}</div>
+    </li>
+    </ul>
+
+  <div *ngIf="!loading && products.length === 0" class="no-results">No se encontraron productos.</div>
+</div>
