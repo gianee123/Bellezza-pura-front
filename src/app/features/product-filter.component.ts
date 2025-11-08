@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime, switchMap } from 'rxjs/operators';
-import { Product, ProductService } from '../services/product.service';
+import { Product, ProductService } from '../shared/product-service';
 
 @Component({
     selector: 'app-product-filter',
