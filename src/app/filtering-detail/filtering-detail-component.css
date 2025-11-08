@@ -1,0 +1,7 @@
+/* estilos básicos para la vista de detalle */
+.detail { padding: 1rem; }
+.detail .back { display: inline-block; margin-bottom: 1rem; text-decoration: none; color: #1332cf; }
+.product h2 { margin: 0 0 0.5rem 0; }
+.product .category { color: #666; margin: 0 0 0.5rem 0; }
+.product .price { color: #2a7f62; font-weight: 600; }
+.raw { background: #f8f8f8; padding: 0.5rem; border-radius: 4px; font-size: 0.85rem; }

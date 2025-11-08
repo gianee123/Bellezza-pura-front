@@ -1,3 +1,4 @@
+/*
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../shared/product-service';
 import { Product } from '../shared/product-interface';
@@ -26,3 +27,4 @@ export class ProductListComponent implements OnInit {
     }
   }
 }
+ */

@@ -1,7 +1,10 @@
 import { Routes } from '@angular/router';
-import { ProductFilterComponent } from './features/product-filter.component';
+import { FilteringListComponent } from './filtering-list/filtering-list-component';
+import { FilteringDetailComponent } from './filtering-detail/filtering-detail-component';
 
 export const routes: Routes = [
-	{ path: '', redirectTo: 'products', pathMatch: 'full' },
-	{ path: 'products', component: ProductFilterComponent }
+	{ path: '', redirectTo: 'filtering', pathMatch: 'full' },
+	{ path: 'filtering', component: FilteringListComponent },
+	{ path: 'filtering/:id', component: FilteringDetailComponent },
+	{ path: '**', redirectTo: 'filtering' }
 ];

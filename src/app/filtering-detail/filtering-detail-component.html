@@ -1,0 +1,13 @@
+<div class="detail">
+    <a class="back" [routerLink]="['/filtering']">← Volver al listado</a>
+
+    <div *ngIf="loading">Cargando producto…</div>
+    <div *ngIf="!loading && !product">No se encontró el producto.</div>
+
+    <div *ngIf="product" class="product">
+        <h2>{{ product.name || 'Sin nombre' }}</h2>
+        <p class="category">Categoria: {{ product.category || '—' }}</p>
+        <p class="price" *ngIf="product.price">Precio: €{{ product.price }}</p>
+        <pre class="raw">{{ product | json }}</pre>
+    </div>
+</div>
