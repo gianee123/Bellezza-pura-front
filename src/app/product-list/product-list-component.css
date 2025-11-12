@@ -1,3 +1,4 @@
+/* CONTENEDOR PRINCIPAL */
 .product-list-container {
   padding: 20px;
   background-color: #FFF0F5;
@@ -10,6 +11,7 @@ h1 {
   margin-bottom: 20px;
 }
 
+/* BOTÓN AGREGAR PRODUCTO (arriba) */
 button[mat-raised-button] {
   background-color: #E91E63;
   color: white;
@@ -19,14 +21,70 @@ button[mat-raised-button] {
   margin-right: auto;
 }
 
+/* GRID DE TARJETAS: 6 COLUMNAS FIJAS */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(6, 1fr); /* 6 columnas fijas */
+  gap: 32px;
+  padding: 20px;
+  justify-content: start; /* tarjetas alineadas a la izquierda */
 }
 
+/* TARJETA */
 .product-card {
+  display: inline-block !important; /* evita que se estire */
+  width: 180px !important;          /* ancho fijo */
+  max-width: 180px !important;      /* límite máximo */
+  vertical-align: top;              /* alinea tarjetas correctamente */
+  margin: 8px;
   border-radius: 16px;
   background-color: #fff;
   box-shadow: 0px 2px 5px rgba(233, 30, 99, 0.2);
+  overflow: hidden;
+  padding: 8px 16px;
+  flex-direction: column;
 }
+
+/* IMAGEN DE PRODUCTO */
+img[mat-card-image] {
+  height: 120px;
+  object-fit: cover;
+}
+
+/* TÍTULO */
+mat-card-title {
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+/* PRECIO */
+.price-container {
+  font-size: 1rem;
+  margin-top: 5px;
+  font-weight: bold;
+  color: #E91E63;
+}
+
+/* BOTONES CRUD (Ver, Editar, Eliminar) */
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px;
+}
+
+/* BOTÓN AGREGAR AL CARRITO */
+.add-cart {
+  background-color: #E91E63 !important;
+  color: white !important;
+  flex: 1 1 100%;
+  margin-top: 8px;
+  font-size: 16px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0px 2px 5px rgba(233, 30, 99, 0.3);
+}
+

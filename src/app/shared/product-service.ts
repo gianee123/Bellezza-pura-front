@@ -14,8 +14,8 @@ export class ProductService {
 
   // Obtener todos los productos
   getProducts(): Observable<Product[]> {
-    return this.http.get<{ data: Product[] }>(this.apiUrl).pipe(
-      map(response => response?.data || [])
+    return this.http.get<{ data: Product[] }>(`${this.apiUrl}/getAll`).pipe(
+      map(response => response.data)
     );
   }
 

@@ -1,0 +1,46 @@
+
+
+<div class="cart-header">
+  <h1>Bellezza Pura - Carrito de Compras</h1>
+
+<div class="cart-container" *ngIf="cartItems.length > 0; else emptyCart">
+  <h2>Mi Carrito</h2>
+
+  <div class="cart-grid">
+    <div class="cart-item" *ngFor="let item of cartItems">
+      <img [src]="item.image" alt="{{item.name}}">
+      <div class="cart-info">
+        <h3>{{ item.name }}</h3>
+        <p>Precio unitario: ${{ item.price }}</p>
+        <p>Subtotal: ${{ item.price * item.quantity }}</p>
+        <div class="quantity-controls">
+          <button mat-icon-button color="primary" (click)="decreaseQuantity(item)">
+            <mat-icon>remove</mat-icon>
+          </button>
+          <span>{{ item.quantity }}</span>
+          <button mat-icon-button color="primary" (click)="increaseQuantity(item)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+        <button mat-stroked-button color="warn" (click)="removeItem(item)">
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <h3>Total: ${{ total }}</h3>
+  <button mat-raised-button color="accent" (click)="checkout()">Comprar</button>
+</div>
+
+<ng-template #emptyCart>
+  <h3>El carrito está vacío</h3>
+</ng-template>
+
+<button mat-raised-button color="primary" routerLink="/product">
+  <mat-icon>home</mat-icon>
+  Volver al inicio
+</button>
+
+
+</div>
