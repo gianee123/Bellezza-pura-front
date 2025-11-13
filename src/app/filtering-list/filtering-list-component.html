@@ -1,15 +1,32 @@
 <div class="filtering-list-container">
     <div class="filters">
-    <input
+    
+      <mat-form-field appearance="outline" class="filter-item">
+        <mat-label>Filtrar por nombre</mat-label>
+        <input matInput
         type="text"
         [(ngModel)]="searchTerm"
-        (ngModelChange)="onSearchChange($event)"
-        placeholder="Filter products..."
-        class="search-input">
-    </div>
+        (ngModelChange)="applyTextFilter()">
+      </mat-form-field>
+
+      <mat-form-field appearance = "outline" class = "filter-item" >
+        <mat-label>Filtrar por categoría</mat-label>
+        <mat-select [(ngModel)]= "selectedCategory" (selectionChange)= "loadProductsByCategory()">
+        <mat-option value="">Todas las categorías</mat-option>
+          <mat-option *ngFor="let category of categories" [value]="category">
+          {{ category }}
+        </mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <button mat-stroked-button color="primary" (click)="clearFilters()" class="filter-button">
+      <mat-icon>clear</mat-icon>
+      Limpiar
+    </button>
+  </div>
 
   <div class="loading" *ngIf="loading">
-    Loading...
+    Cargando productos...
     </div>
 
   <div class="error" *ngIf="error">
@@ -17,13 +34,25 @@
     </div>
 
   <div class="products" *ngIf="!loading && !error">
-    <div class="product-card" *ngFor="let p of products">
-        <h3>{{ p.name }}</h3>
+    <div *ngIf="filteredProducts.length === 0; else productGrid">
+      <p> No se encontraron productos para los filtros seleccionados.</p>
+    </div>
+      
+    <ng-template #productGrid>
+      <div class="product-card" *ngFor="let p of filteredProducts">
+      <h3>{{ p.name }}</h3>
         <p>{{ p.category }}</p>
         <p class="price">{{ p.price | currency }}</p>
         <div class="actions">
         <a [routerLink]="['/filtering', p.id]" class="detail-link">VER DETALLES</a>
-        </div>
+        <button
+        mat-icon-button
+        color="primary"
+        aria-label="Agregar al carrito"
+        (click)="addToCart(p)">
+          <mat-icon>add_shopping_cart</mat-icon>
+        </button>
+      </div>
     </div>
-    </div>
+  </ng-template>
 </div>
