@@ -1,0 +1,55 @@
+header {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%; 
+    z-index: 1000; 
+    background-color: var(--color-background-off-white) !important; 
+
+    
+/* 🎯 SOLUCIÓN: Usamos BLANCO PURO (para que el fondo sea confiable) */
+    background-color: var(--color-background-light) !important; 
+    
+    /* El texto principal del header es oscuro, no blanco */
+    color: var(--color-text-dark) !important; 
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+/* Contenedor interno del header */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: calc(2 * var(--spacing-unit)) calc(4 * var(--spacing-unit));
+}
+
+main {
+    margin-top: 72px; 
+    padding: calc(4 * var(--spacing-unit)); 
+    min-height: 80vh; 
+}
+
+
+nav a {
+    margin-left: calc(3 * var(--spacing-unit));
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-dark);
+}
+
+nav a.active {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 5px;
+}
+
+footer {
+    text-align: center;
+    padding: calc(2 * var(--spacing-unit));
+    background-color: var(--color-background-off-white);
+    color: var(--color-text-light);
+    font-size: var(--font-size-small);
+    border-top: 1px solid var(--color-border-light);
+}

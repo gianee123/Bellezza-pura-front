@@ -1,40 +1,69 @@
-<mat-card *ngFor="let product of products" class="product-card">
+
+<div class="product-list-container">
   
-  <img mat-card-image [src]="product.image" alt="{{ product.name }}">
+  <h1 class="list-title">Catálogo de Productos de Belleza</h1>
+  
+  <button mat-raised-button class="add-product-button" routerLink="/products/new">
+    <mat-icon>add</mat-icon>
+    Crear Nuevo Producto
+  </button>
+  
+  <div *ngIf="products && products.length > 0; else noProducts" class="product-grid">
+    
+    <mat-card *ngFor="let product of products" class="product-card">
+      
+      <img mat-card-image [src]="product.image" alt="{{ product.name }}">
 
-  <mat-card-title>{{ product.name }}</mat-card-title>
+      <mat-card-title class="card-product-title">{{ product.name }}</mat-card-title>
+      
+      <mat-card-subtitle class="card-product-category">{{ product.category }}</mat-card-subtitle>
 
-  <mat-card-content>
-    <p>{{ product.description }}</p>
-    <div class="price-container">
-      ${{ product.price }}
+      <mat-card-content>
+        <p class="product-description">{{ product.description | slice:0:70 }}...</p>
+        
+        <div class="price-container">
+          ${{ product.price }}
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions class="action-buttons">
+
+        <div class="crud-actions">
+            <button mat-icon-button color="primary" [routerLink]="['/products', product._id]" matTooltip="Ver Detalle">
+                <mat-icon>visibility</mat-icon>
+            </button>
+
+            <button mat-icon-button color="accent" [routerLink]="['/products/edit', product._id]" matTooltip="Editar">
+                <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-icon-button color="warn" (click)="deleteProduct(product._id)" matTooltip="Eliminar">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+
+        <button mat-raised-button class="add-cart" (click)="addToCart(product)">
+          <mat-icon>add_shopping_cart</mat-icon>
+          Añadir
+        </button>
+        
+        <button mat-stroked-button color="accent" routerLink="/cart" class="view-cart-button">
+        <mat-icon>shopping_cart</mat-icon>
+        Ver Carrito
+    </button>
+
+      </mat-card-actions>
+
+    </mat-card>
+    
+  </div>
+  
+  <ng-template #noProducts>
+    <div class="empty-state">
+      <h2>¡Ups! No hay productos de belleza registrados.</h2>
+      <p>Comienza a registrar productos haciendo clic en el botón superior.</p>
+      <mat-icon>sentiment_dissatisfied</mat-icon>
     </div>
-  </mat-card-content>
+  </ng-template>
 
-  <mat-card-actions class="action-buttons">
-
-    <button mat-stroked-button color="primary" [routerLink]="['/products', product._id]">
-      Ver
-    </button>
-
-    <button mat-stroked-button color="accent" [routerLink]="['/products/edit', product._id]">
-      Editar
-    </button>
-
-    <button mat-stroked-button color="warn" (click)="deleteProduct(product._id)">
-      Eliminar
-    </button>
-
-    <button mat-raised-button class="add-cart" (click)="addToCart(product)">
-      <mat-icon>add_shopping_cart</mat-icon>
-      Agregar al carrito
-    </button>
-
-    <button mat-stroked-button color="accent" routerLink="/cart">
-      <mat-icon>shopping_cart</mat-icon>
-  Ver carrito
-</button>
-
-  </mat-card-actions>
-
-</mat-card>
+</div>

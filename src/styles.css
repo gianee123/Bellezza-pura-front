@@ -1,7 +1,88 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap');
+
+/* 2. TEMA BASE DE MATERIAL */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/*
+ * ===========================================
+ * ESTILOS GLOBALES COMPARTIDOS - Productos de Belleza
+ * ===========================================
+ */
+:root {
+  /* --- PALETA DE COLORES PASTEL Y NEUTROS --- */
+  --color-primary: #F7CAC9; 
+  --color-accent: #F9D1E8; 
+  --color-background-light: #FFFFFF; 
+  --color-text-dark: #333333; 
+  --color-text-light: #6A6A6A; 
+  --color-border-light: #EBEBEB; 
+  --color-hover-subtle: #FFF0F5;
+  --color-header-dark: #B96680; 
+
+  /* --- TIPOGRAFÍA --- */
+  --font-family-primary: 'Roboto', 'Helvetica Neue', sans-serif;
+  --font-family-secondary: 'Playfair Display', serif; 
+  --spacing-unit: 8px; 
+  --border-radius-base: 4px; 
+  --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.08); 
+}
+
+/* * ===========================================
+ * APLICACIÓN DE ESTILOS BASE Y TIPOGRAFÍA
+ * ===========================================
+ */
+body {
+  font-family: var(--font-family-primary);
+  color: var(--color-text-dark);
+  background-color: var(--color-background-light);
+  line-height: 1.6;
+  margin: 0; 
+}
+
+/* Fuente secundaria a títulos */
+h1, h2, h3 {
+  font-family: var(--font-family-secondary) !important; /* Añadir !important para asegurar */
+  color: var(--color-text-dark); 
+  font-weight: 500; /* Medium Weight */
+  line-height: 1.2;
+}
+
+
+/* * ===========================================
+ * SOBRESCRITURA DE ESTILOS DE ANGULAR MATERIAL
+ * ===========================================
+ */
+
+/* 1. Botones Mat-Raised (Botón de Guardar) */
+.mat-mdc-raised-button.mat-primary, 
+.mat-mdc-unelevated-button.mat-primary {
+    background-color: var(--color-primary) !important;
+    color: var(--color-background-light) !important;
+    border-radius: var(--border-radius-base) !important;
+}
+
+/* 2. Toggle Switch (Disponibilidad) */
+.mat-mdc-slide-toggle.mat-primary .mdc-switch__track::after,
+.mat-mdc-slide-toggle.mat-primary.mdc-switch--selected .mdc-switch__handle {
+    background-color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+}
+
+/* 3. Campos de Formulario (Inputs y Selects) */
+.mat-mdc-form-field.mat-focused .mat-mdc-form-field-ripple {
+    background-color: var(--color-primary) !important;
+}
+
+.mat-mdc-form-field.mat-focused .mat-mdc-form-field-label {
+    color: var(--color-primary) !important;
+}
+
+
+.mat-mdc-row:hover {
+    background-color: var(--color-hover-subtle);
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
