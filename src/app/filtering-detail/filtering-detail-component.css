@@ -5,3 +5,4 @@
 .product .category { color: #666; margin: 0 0 0.5rem 0; }
 .product .price { color: #2a7f62; font-weight: 600; }
 .raw { background: #f8f8f8; padding: 0.5rem; border-radius: 4px; font-size: 0.85rem; }
+.product-description { margin-top: 1rem; line-height: 1.5; }

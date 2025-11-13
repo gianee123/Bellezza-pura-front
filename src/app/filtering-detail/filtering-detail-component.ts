@@ -1,8 +1,8 @@
-/*import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Product } from '../models/product.model';
-import { ProductService } from '../services/product.service';
+import { Product } from '../shared/product-interface.js';
+import { ProductService } from '../shared/product-service.js';
 
 @Component({
     selector: 'app-filtering-detail',
@@ -22,10 +22,10 @@ export class FilteringDetailComponent implements OnInit {
         this.id = this.route.snapshot.paramMap.get('id');
         if (this.id) {
             this.loading = true;
-            this.productService.getProductById(this.id).subscribe((p) => {
+            this.productService.getProduct(this.id).subscribe((p) => {
                 this.product = p;
                 this.loading = false;
             });
         }
     }
-}*/
+}

@@ -44,7 +44,7 @@
         <p>{{ p.category }}</p>
         <p class="price">{{ p.price | currency }}</p>
         <div class="actions">
-        <a [routerLink]="['/filtering', p.id]" class="detail-link">VER DETALLES</a>
+        <a [routerLink]="['/filtering', p._id]" class="detail-link">VER DETALLES</a>
         <button
         mat-icon-button
         color="primary"

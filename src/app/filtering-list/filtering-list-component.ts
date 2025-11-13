@@ -4,14 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { ProductService } from '../services/product.service';
-//import {CartService} from '../services/cart.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { Product } from '../models/product.model';
+import { Product } from '../models/product.model.js';
+import { ProductService } from '../services/product.service.js';
+import { CartService } from '../shared/cart-service.js';
 
 @Component({
 	selector: 'app-filtering-list',
@@ -50,7 +50,7 @@ throw new Error('Method not implemented.');
 
 	constructor(
 		private productService: ProductService,
-//		private cartService: CartService
+		private cartService: CartService
 	){}
 
 	ngOnInit(): void {
@@ -96,10 +96,10 @@ function applyTextFilter() {
 	throw new Error('Function not implemented.');
 }
 
-/*addToCart(product: Product): void {
-		this.cartService.addToCart(product);
-		console.log("Producto añadido", product.name)
-		throw new Error ('Method not implemented.');
-	}
+function loadProductsByCategory() {
+	throw new Error('Function not implemented.');
 }
-*/
+
+function ClearFilters() {
+	throw new Error('Function not implemented.');
+}
