@@ -8,8 +8,7 @@ import { Product } from './product-interface';
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:3000/api/products'; // Cambiar si tu backend usa otra ruta
-
+  private apiUrl = 'http://localhost:3000/api/products';
   constructor(private http: HttpClient) {}
 
   // Obtener todos los productos
@@ -25,13 +24,15 @@ export class ProductService {
       map(response => response.data)
     );
   }
-
-  // Agregar un nuevo producto
-  addProduct(product: Omit<Product, '_id'>): Observable<Product> {
-    return this.http.post<{ data: Product }>(this.apiUrl, product).pipe(
-      map(response => response.data)
+// Agregar un nuevo producto (CREATE)
+addProduct(product: Omit<Product, '_id'>): Observable<Product> {
+    // 🎯 CORRECCIÓN: CONSTRUIMOS LA URL AÑADIENDO '/create'
+    const createUrl = `${this.apiUrl}/create`; 
+    
+    return this.http.post<{ data: Product }>(createUrl, product).pipe( // Usamos la URL corregida
+        map(response => response.data)
     );
-  }
+}
 
   // Editar producto existente
   updateProduct(id: string, product: Partial<Product>): Observable<Product> {

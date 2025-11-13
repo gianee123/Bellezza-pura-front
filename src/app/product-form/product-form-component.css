@@ -1,0 +1,69 @@
+
+.product-form-card {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: calc(3 * var(--spacing-unit)); 
+  box-shadow: var(--shadow-light); 
+  border: 1px solid var(--color-border-light); 
+  border-radius: var(--border-radius-base);
+}
+
+.form-title {
+  font-family: var(--font-family-secondary); 
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-dark);
+  padding-bottom: var(--spacing-unit);
+  margin-bottom: var(--spacing-unit);
+  border-bottom: 2px solid var(--color-primary); /* Línea pastel */
+}
+
+.full-width {
+  width: 100%;
+}
+
+.row-group {
+  display: flex;
+  gap: calc(2 * var(--spacing-unit)); 
+}
+
+.half-width {
+  flex: 1 1 50%; 
+}
+
+/* Estilo para el grupo de toggle */
+.toggle-group {
+  display: flex;
+  align-items: center;
+  margin-top: calc(2 * var(--spacing-unit));
+  margin-bottom: calc(3 * var(--spacing-unit));
+  padding: var(--spacing-unit) 0;
+}
+
+.toggle-group label {
+  margin-right: calc(4 * var(--spacing-unit));
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-light); 
+}
+
+/* Estilo de botones */
+.form-actions {
+  padding-top: calc(2 * var(--spacing-unit));
+  display: flex;
+  justify-content: flex-end; 
+}
+
+.submit-button {
+  background-color: var(--color-primary) !important; 
+  color: var(--color-background-light) !important; 
+  padding: calc(1.5 * var(--spacing-unit)) calc(3 * var(--spacing-unit)) !important;
+  font-weight: var(--font-weight-bold);
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #E6B6B5 !important; 
+}
+
+.mat-mdc-select-value {
+    color: var(--color-text-dark);
+}
