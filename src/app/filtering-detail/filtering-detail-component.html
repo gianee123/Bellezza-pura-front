@@ -1,6 +1,10 @@
 <div class="detail">
-    <a class="back" [routerLink]="['/filtering']">← Volver al listado</a>
 
+    <a class="back" routerLink="/filtering">
+        <mat-icon>arrow_back</mat-icon>
+        Volver a la lista de productos
+    </a>
+    
     <div *ngIf="loading">Cargando producto…</div>
     <div *ngIf="!loading && !product">No se encontró el producto.</div>
 

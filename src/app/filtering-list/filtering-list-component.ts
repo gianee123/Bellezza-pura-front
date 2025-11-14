@@ -9,9 +9,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { Product } from '../models/product.model.js';
-import { ProductService } from '../services/product.service.js';
-import { CartService } from '../shared/cart-service.js';
+
+import { CartService } from '../shared/cart-service';
+import { FilteringProduct as Product } from '../shared/filtering-interface'; // Usamos 'as Product' para no cambiar el resto del código
+import { FilteringService } from '../shared/filtering-service';
 
 @Component({
 	selector: 'app-filtering-list',
@@ -31,75 +32,67 @@ import { CartService } from '../shared/cart-service.js';
 })
 
 export class FilteringListComponent implements OnInit {
-clearFilters() {
-throw new Error('Method not implemented.');
-}
-addToCart(_t38: Product) {
-throw new Error('Method not implemented.');
-}
+clearFilters(): void {
+    this.searchTerm = '';
+    this.selectedCategory = '';
+    this.applyFilter();
+	}
+addToCart(product: Product) {
+this.cartService.addToCart(product);
+    console.log('Producto agregado:', product.name);
+	}
 
-	selectedCategory: string = '';
-	searchTerm: string = '';
-	categories: string[] = ['Maquillaje', 'Skincare', 'Cuidado del cabello'];
+selectedCategory: string = '';
+searchTerm: string = '';
+categories: string[] = ['Maquillaje', 'Skincare', 'Cuidado del cabello'];
 
-	private allProducts: Product[] = [];
-	filteredProducts: Product[] = [];
+private allProducts: Product[] = [];
+filteredProducts: Product[] = [];
 
-	loading: boolean = false;
-	error: string | null = null;
+loading: boolean = false;
+error: string | null = null;
 
-	constructor(
-		private productService: ProductService,
+constructor (private productService: FilteringService,
 		private cartService: CartService
-	){}
+	) {}
 
-	ngOnInit(): void {
-		this.loadProductsByCategory();
-	}
-	loadProductsByCategory(): void {
-		this.loading = true;
-		this.error = null;
+ngOnInit(): void {
+	this.loadAllProducts();
+}
+loadAllProducts(): void {
+	this.loading = true;
+    this.error = null;
 
-		(
-			this.productService.getProducts(this.selectedCategory) as unknown as Observable<Product[]>
-		).subscribe({
-			next: (data: Product[]) => {
-				this.allProducts = data;
-				this.applyTextFilter();
-				this.loading = false;
-			},
-			error: (err) => {
-				this.error = 'No se pudieron cargar los productos.';
-				this.loading = false;
-				}
-		});
-	}
-	applyTextFilter() {
-		if (!this.searchTerm) {
-			this.filteredProducts = [...this.allProducts];
-		} else {
-			this.filteredProducts = this.allProducts.filter((p) =>
-				p.name.toLowerCase().includes(this.searchTerm.toLowerCase())
-			);
+	(
+		this.productService.getProducts(this.selectedCategory) as unknown as Observable<Product[]>
+	).subscribe({
+		next: (data: Product[]) => {
+			this.allProducts = data;
+			this.applyFilter();
+			this.loading = false;
+		},
+		error: (err) => {
+			this.error = 'No se pudieron cargar los productos.';
+			this.loading = false;
 		}
+	});
+}
+
+applyFilter() {
+	let tempProducts = [...this.allProducts];
+// 1. Filtrar por categoría
+    if (this.selectedCategory) {
+		tempProducts = tempProducts.filter(
+        (p) => p.category === this.selectedCategory
+		);
+    }
+
+// Filtrar por término de búsqueda (Nombre)
+    if (this.searchTerm) {
+		tempProducts = tempProducts.filter((p) =>
+        p.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+	);
+}
+    this.filteredProducts = tempProducts;
 	}
-
-ClearFilters(): void {
-	this.searchTerm = '';
-	this.selectedCategory = '';
-	
-	this.loadProductsByCategory();
-	}
-}
-
-function applyTextFilter() {
-	throw new Error('Function not implemented.');
-}
-
-function loadProductsByCategory() {
-	throw new Error('Function not implemented.');
-}
-
-function ClearFilters() {
-	throw new Error('Function not implemented.');
 }

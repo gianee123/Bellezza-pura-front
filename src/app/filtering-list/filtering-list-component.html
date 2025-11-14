@@ -1,4 +1,10 @@
 <div class="filtering-list-container">
+
+  <a mat-raised-button color="primary" routerLink="/home" style="margin-bottom: rem; display: inline-block;">
+      <mat-icon>home</mat-icon>
+      Volver al Inicio
+      </a>
+
     <div class="filters">
     
       <mat-form-field appearance="outline" class="filter-item">
@@ -6,12 +12,12 @@
         <input matInput
         type="text"
         [(ngModel)]="searchTerm"
-        (ngModelChange)="applyTextFilter()">
+        (ngModelChange)="applyFilter()">
       </mat-form-field>
 
       <mat-form-field appearance = "outline" class = "filter-item" >
         <mat-label>Filtrar por categoría</mat-label>
-        <mat-select [(ngModel)]= "selectedCategory" (selectionChange)= "loadProductsByCategory()">
+        <mat-select [(ngModel)]= "selectedCategory" (selectionChange)= "loadAllProducts()">
         <mat-option value="">Todas las categorías</mat-option>
           <mat-option *ngFor="let category of categories" [value]="category">
           {{ category }}
