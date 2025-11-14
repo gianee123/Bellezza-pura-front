@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import {  MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
@@ -10,7 +11,8 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'

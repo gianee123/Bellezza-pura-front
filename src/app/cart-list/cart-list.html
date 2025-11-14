@@ -1,46 +1,62 @@
 
-
-<div class="cart-header">
+<div class="cart-container" > 
   <h1>Bellezza Pura - Carrito de Compras</h1>
+<div *ngIf="cartItems.length > 0; else emptyCart" class="product-grid">
+    <div class="header-cart">
+      <h2>Mi Carrito</h2>
+      <button mat-raised-button class="buy-button" color="accent" (click)="createOrder()">
+        Comprar
+      </button>
+    </div>
+  
+ <mat-card *ngFor="let item of cartItems" class = product-card>
 
-<div class="cart-container" *ngIf="cartItems.length > 0; else emptyCart">
-  <h2>Mi Carrito</h2>
+      <img mat-card-image [src]="item.image" alt="{{item.name}}">
 
-  <div class="cart-grid">
-    <div class="cart-item" *ngFor="let item of cartItems">
-      <img [src]="item.image" alt="{{item.name}}">
-      <div class="cart-info">
-        <h3>{{ item.name }}</h3>
-        <p>Precio unitario: ${{ item.price }}</p>
-        <p>Subtotal: ${{ item.price * item.quantity }}</p>
-        <div class="quantity-controls">
+      <mat-card-title class="card-product-title">{{ item.name }}</mat-card-title>
+
+      <mat-card-subtitle class="card-product-category">{{item.category}}</mat-card-subtitle>
+
+      <mat-card-content>  
+        <div class="price-container">${{ item.price }}</div>      
+      </mat-card-content>
+      
+      <mat-card-actions class="action-buttons">
+
+        <div class="crud-actions">
+
           <button mat-icon-button color="primary" (click)="decreaseQuantity(item)">
             <mat-icon>remove</mat-icon>
           </button>
+
           <span>{{ item.quantity }}</span>
+
           <button mat-icon-button color="primary" (click)="increaseQuantity(item)">
             <mat-icon>add</mat-icon>
           </button>
-        </div>
+
         <button mat-stroked-button color="warn" (click)="removeItem(item)">
           Eliminar
         </button>
-      </div>
-    </div>
-  </div>
+        
+      </div> 
 
-  <h3>Total: ${{ total }}</h3>
-  <button mat-raised-button color="accent" (click)="checkout()">Comprar</button>
+      <h3>Total: ${{ total }}</h3>
+         
+      </mat-card-actions>
+      
+</mat-card>
+
 </div>
 
 <ng-template #emptyCart>
   <h3>El carrito está vacío</h3>
 </ng-template>
 
-<button mat-raised-button color="primary" routerLink="/product">
-  <mat-icon>home</mat-icon>
+<button mat-raised-button class = "Home-button" routerLink="/products">
+  <mat-icon> home </mat-icon>
   Volver al inicio
 </button>
 
 
-</div>
+</div> 
