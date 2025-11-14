@@ -10,11 +10,11 @@ import { ProductDetailComponent } from './product-detail/product-detail-componen
 
 export const routes: Routes = [
 
-	{path : 'home', component : ProductListComponent},
+	{ path : 'home', component : ProductListComponent},
 	{ path : 'products', component : ProductListComponent},
-    {path: 'products/:id', component: ProductDetailComponent, title: 'Detalle del Producto' },
 	{ path: 'products/new', component: ProductFormComponent, title: 'Registrar Producto'},
 	{ path: 'products/edit/:id', component: ProductFormComponent, title: 'Editar Producto' },
+    { path: 'products/:id', component: ProductDetailComponent, title: 'Detalle del Producto' },
 
 	{ path: 'filtering', component: FilteringListComponent },
 	{ path: 'filtering/:id', component: FilteringDetailComponent },
