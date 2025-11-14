@@ -33,7 +33,8 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService 
+    private productService: ProductService,
+    private cartService: CartService
   ) { }
 
   ngOnInit(): void {
@@ -50,8 +51,9 @@ export class ProductDetailComponent implements OnInit {
   }
 
   // Método para manejar la adición al carrito
-  addToCart(product: Product): void {
-    console.log(`Producto ${product.name} agregado al carrito.`);
-    alert(`Se agregó ${product.name} al carrito (simulación).`);
+ addToCart(product: Product): void {
+    this.cartService.addToCart(product); 
+    console.log(`Producto ${product.name} agregado al carrito desde DETALLE.`);
+    alert(`Se agregó ${product.name} al carrito.`);
   }
 }
