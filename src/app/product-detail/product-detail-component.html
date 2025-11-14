@@ -1,0 +1,47 @@
+<div class="detail-container">
+  
+  <mat-card *ngIf="product$ | async as product; else productNotFound" class="product-detail-card">
+    
+    <div class="card-content-wrapper">
+      <div class="image-column">
+        <img [src]="product.image" alt="{{ product.name }}" class="product-image-large">
+        <div class="price-box">
+          <span class="price-tag">${{ product.price }}</span>
+        </div>
+      </div>
+
+      <div class="info-column">
+        <h1 class="product-title">{{ product.name }}</h1>
+        <p class="product-category">{{ product.category }}</p>
+        <mat-divider></mat-divider>
+        <p class="product-description-text">{{ product.description }}</p>
+        
+        <div class="action-buttons-detail">
+            <button 
+        mat-raised-button 
+        class="add-to-cart-detail" 
+        (click)="addToCart(product)" 
+        [disabled]="product.stock === 0"
+    >
+        <mat-icon>add_shopping_cart</mat-icon>
+        Añadir al Carrito
+    </button>
+            <button mat-stroked-button color="accent" [routerLink]="['/products/edit', product._id]">
+                <mat-icon>edit</mat-icon> Editar Producto
+            </button>
+            <button mat-button routerLink="/products" class="back-button">Volver</button>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+
+  <ng-template #productNotFound>
+    <div class="error-state">
+      <mat-icon color="warn">search_off</mat-icon>
+      <h1>¡Lo sentimos! Producto no encontrado.</h1>
+      <p>El identificador no corresponde a un producto válido o la carga inicial falló. Intenta con un ID que sepas que funciona.</p>
+      <button mat-flat-button color="primary" routerLink="/products">Ir al Catálogo</button>
+    </div>
+  </ng-template>
+
+</div>

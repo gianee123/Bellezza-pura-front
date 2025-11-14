@@ -3,6 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
+import { CartService } from '../shared/cart-service';
+import { FilteringProduct as Product } from '../shared/filtering-interface';
+import { FilteringService } from '../shared/filtering-service';
+import { ProductService } from '../shared/product-service';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,9 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
-import { CartService } from '../shared/cart-service';
-import { FilteringProduct as Product } from '../shared/filtering-interface'; // Usamos 'as Product' para no cambiar el resto del código
-import { FilteringService } from '../shared/filtering-service';
+
 
 @Component({
 	selector: 'app-filtering-list',

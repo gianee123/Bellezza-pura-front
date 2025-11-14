@@ -9,6 +9,8 @@ import { Product } from './product-interface';
 })
 export class ProductService {
   private apiUrl = 'http://localhost:3000/api/products';
+  private apiUrlSingular = 'http://localhost:3000/api/product';
+
   constructor(private http: HttpClient) {}
 
   // Obtener todos los productos
@@ -17,16 +19,23 @@ export class ProductService {
       map(response => response.data)
     );
   }
-
-  // Obtener un producto por ID
+  //obtener un producto por ID, al tener data y en nuestro back no, lo ajustamos,
+  // deberiamos modificar el back, esto fue una solucion rapida
+getProduct(id: string): Observable<Product> {
+  // El objeto es Product directamente (NO { data: Product })
+  return this.http.get<Product>(`${this.apiUrl}/${id}`); 
+  // Esto requiere eliminar el .pipe(map(response => response.data)) de esta función
+}
+ /* // Obtener un producto por ID
   getProduct(id: string): Observable<Product> {
     return this.http.get<{ data: Product }>(`${this.apiUrl}/${id}`).pipe(
       map(response => response.data)
     );
-  }
+  }*/
+
 // Agregar un nuevo producto (CREATE)
 addProduct(product: Omit<Product, '_id'>): Observable<Product> {
-    // 🎯 CORRECCIÓN: CONSTRUIMOS LA URL AÑADIENDO '/create'
+
     const createUrl = `${this.apiUrl}/create`; 
     
     return this.http.post<{ data: Product }>(createUrl, product).pipe( // Usamos la URL corregida
